@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
 contract NamespaceProxy is Ownable {
 	mapping(string => address) allContracts;

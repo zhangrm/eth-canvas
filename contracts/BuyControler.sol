@@ -1,10 +1,10 @@
 pragma solidity ^0.4.21;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
-import 'zeppelin-solidity/contracts/math/SafeMath.sol';
-import 'zeppelin-solidity/contracts/payment/PullPayment.sol';
-import 'zeppelin-solidity/contracts/lifecycle/Destructible.sol';
-import 'zeppelin-solidity/contracts/lifecycle/Pausable.sol';
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
+import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
+import 'openzeppelin-solidity/contracts/payment/PullPayment.sol';
+import 'openzeppelin-solidity/contracts/lifecycle/Destructible.sol';
+import 'openzeppelin-solidity/contracts/lifecycle/Pausable.sol';
 import './NamespaceProxy.sol';
 import './Map.sol';
 
@@ -17,7 +17,7 @@ contract BuyControler is Ownable, PullPayment, Pausable, Destructible {
 
     event BuyPointSucceed(uint indexed x, uint indexed y, uint8 color);
 
-    function BuyControler(address NpAddr) public {
+    constructor(address NpAddr) public {
         npContract = NamespaceProxy(NpAddr);
     }
 
@@ -45,8 +45,8 @@ contract BuyControler is Ownable, PullPayment, Pausable, Destructible {
 
     function sendBuyPayment(address lastOwner, uint payLast) internal {
         if (lastOwner != address(0) || payLast == 0) {
-            asyncSend(lastOwner, payLast);
-            asyncSend(address(0xAbF74C68A27057c5124f3880BE70563bb52879DA), basePrice);
+            asyncTransfer(lastOwner, payLast);
+            asyncTransfer(address(0xAbF74C68A27057c5124f3880BE70563bb52879DA), basePrice);
         }
     }
 

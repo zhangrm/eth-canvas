@@ -1,6 +1,6 @@
 pragma solidity ^0.4.21;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
+import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import './NamespaceProxy.sol';
 
 contract Map is Ownable {
@@ -12,7 +12,7 @@ contract Map is Ownable {
     uint[50][50] public cntMap;
 
 
-    function Map(address NpAddr) public {
+    constructor(address NpAddr) public {
         npContract = NamespaceProxy(NpAddr);
         //		NpAddr0 = NpAddr;
     }
